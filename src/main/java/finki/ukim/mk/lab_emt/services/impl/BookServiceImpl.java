@@ -94,4 +94,16 @@ public class BookServiceImpl implements BookService {
     public void deleteById(Long id) {
         this.bookRepository.deleteById(id);
     }
+
+    @Override
+    public void notAvailable(Long id) {
+        Book book = findById(id).orElse(null);
+        if(book.getAvailableCopies() == 0) {
+            System.out.println("Book is not available");
+        } else {
+            System.out.println("You can rent it");
+        }
+    }
+
+
 }

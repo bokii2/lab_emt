@@ -3,6 +3,7 @@ package finki.ukim.mk.lab_emt.web;
 import finki.ukim.mk.lab_emt.model.Book;
 import finki.ukim.mk.lab_emt.model.dto.BookDto;
 import finki.ukim.mk.lab_emt.services.BookService;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,10 +45,15 @@ public class BookRestController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
         this.bookService.deleteById(id);
         if(this.bookService.findById(id).isEmpty())
             return ResponseEntity.ok().build();
         return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/rent/{id}")
+    public void notAvailable(@PathVariable Long id){
+        this.bookService.notAvailable(id);
     }
 }
