@@ -1,23 +1,29 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
-function Header({ props }) {
+const header = (props) => {
   return (
     <header>
-      <nav>
-        <a>EMT_LAB</a>
-        <button></button>
-        <div>
-          <ul>
-            <li>
-              <Link to={"/books"}>Books</Link>
-              <Link to={"/categories"}>Categories</Link>
-            </li>
-          </ul>
+      <nav className="navbar navbar-dark bg-dark">
+        <div className="container">
+          <a className="navbar-brand">EMT_LAB</a>
+          <div className="d-flex">
+            <Link className="nav-link text-white" to={"/books"}>
+              Books
+            </Link>
+            <Link className="nav-link text-white" to={"/authors"}>
+              Authors
+            </Link>
+            <Link className="nav-link text-white" to={"/categories"}>
+              Categories
+            </Link>
+            <Link className="nav-link text-white" to={"/countries"}>
+              Countries
+            </Link>
+          </div>
         </div>
       </nav>
     </header>
   );
-}
+};
 
-export default Header;
+export default header;
